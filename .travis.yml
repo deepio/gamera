@@ -21,6 +21,8 @@ matrix:
         - MATRIX_EVAL="brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
     - os: osx
       osx_image: xcode9.3
       env:
@@ -28,6 +30,8 @@ matrix:
         - MATRIX_EVAL="brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
     - os: osx
       osx_image: xcode9.2
       env:
@@ -35,6 +39,8 @@ matrix:
         - MATRIX_EVAL="brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
     - os: osx
       osx_image: xcode9.1
       env:
@@ -42,6 +48,8 @@ matrix:
         - MATRIX_EVAL="brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
     - os: osx
       osx_image: xcode9
       env:
@@ -49,6 +57,8 @@ matrix:
         - MATRIX_EVAL="brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
     - os: osx
       osx_image: xcode8.3
       env:
@@ -56,6 +66,8 @@ matrix:
         - MATRIX_EVAL="brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
     - os: osx
       osx_image: xcode8
       env:
@@ -63,9 +75,21 @@ matrix:
         - MATRIX_EVAL="brew upgrade gcc@4.9 && brew install python@2"
         - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
         - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
+        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
 before_install:
   # Install wx.
   - eval "${MATRIX_EVAL}"
+  - pip install virtualenv
+  - virtualenv ./env
+  - . ./env/bin/activate
+  - wget https://superb-sea2.dl.sourceforge.net/project/wxpython/wxPython/3.0.2.0/wxPython-src-3.0.2.0.tar.bz2
+  - tar -xf wxPython-src-3.0.2.0.tar.bz2
+  - cd ./wxPython-src-3.0.2.0
+  - eval "${WkFIX_EVAL}"
+  - cd ./wxPython
+  - eval "${WXBUILD_EVAL}"
+  - cd ../..
 install:
 - echo "extra installation not needed"
 script:
