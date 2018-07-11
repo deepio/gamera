@@ -91,6 +91,6 @@ before_install:
   - eval "${WXBUILD_EVAL}"
   - cd ../..
 install:
-- echo "extra installation not needed"
+  - python setup.py build
 script:
 - python setup.py build --nowx
