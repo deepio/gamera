@@ -5,10 +5,10 @@ matrix:
     # Linux Installation.
     - os: linux
       env:
-        - MATRIX_EVAL="sudo apt-get update && sudo apt-get install python-wxgtk2.8 python-pip && pip install wxpython==2.8.11.0"
+        - MATRIX_EVAL="sudo apt-get update && sudo apt-get install python-wxgtk2.8 python-pip"
     - os: linux
       env:
-        - MATRIX_EVAL="sudo apt-get update && sudo apt-get install python-wxgtk2.8 python-pip && pip install wxpython==2.8.11.0"
+        - MATRIX_EVAL="sudo apt-get update && sudo apt-get install python-wxgtk2.8 python-pip"
     # Mac Installation.
     - os: osx
       osx_image: xcode9.4
@@ -19,36 +19,36 @@ matrix:
       osx_image: xcode9.3
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode9.2
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode9.1
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode9
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode8.3
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode8
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
 before_install:
   - eval "${MATRIX_EVAL}"
   - pip install -U pip
-  - pip install pytest docutils
+  - pip install pytest docutils pygments
 install:
   - python setup.py build
   - python setup.py install
