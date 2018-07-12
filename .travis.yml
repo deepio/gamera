@@ -5,92 +5,41 @@ matrix:
     # Linux Installation.
     - os: linux
       env:
-        - BASE_DIST="UBUNTU-14.04"
-        - MATRIX_EVAL="sudo apt-mark unhold libgtk2.0-bin libgtk2.0-dev libgtk2.0-doc gtk2.0-examples libgtk2.0-0 libgtk2.0-common libgtk2.0-0 gtk2.0-binver libgtk2.0-0 && sudo apt-get install gtk2.0"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - MATRIX_EVAL="sudo apt-get install python-wxgtk3.0 python-pip && pip install wxpython==2.8.11.0"
     - os: linux
       env:
-        - BASE_DIST="UBUNTU-14.04?"
-        # Can we update the travis image during the build?
-        - MATRIX_EVAL="sudo apt install update-manager-core -yq && sudo do-release-upgrade"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
+        - MATRIX_EVAL="sudo apt-get install python-wxgtk3.0 python-pip && pip install wxpython==2.8.11.0"
+    # Mac Installation.
     - os: osx
       osx_image: xcode9.4
       env:
-        - BASE_DIST="OSX-10.13 (xcode9.4)"
-        - MATRIX_EVAL="brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
     - os: osx
       osx_image: xcode9.3
       env:
-        - BASE_DIST="OSX-10.13 (xcode9.3)"
-        - MATRIX_EVAL="brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
     - os: osx
       osx_image: xcode9.2
       env:
-        - BASE_DIST="OSX-10.12 (xcode9.2)"
-        - MATRIX_EVAL="brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
     - os: osx
       osx_image: xcode9.1
       env:
-        - BASE_DIST="OSX-10.12 (xcode9.1)"
-        - MATRIX_EVAL="brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
     - os: osx
       osx_image: xcode9
       env:
-        - BASE_DIST="OSX-10.12 (xcode9)"
-        - MATRIX_EVAL="brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
     - os: osx
       osx_image: xcode8.3
       env:
-        - BASE_DIST="OSX-10.12 (xcode8.3.3)"
-        - MATRIX_EVAL="brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
     - os: osx
       osx_image: xcode8
       env:
-        - BASE_DIST="OSX-10.11 (xcode8gm)"
-        - MATRIX_EVAL="brew upgrade gcc@4.9 && brew install python@2"
-        - CFLAGS="-stdlib=libstdc++ -mmacosx-version-min=10.6"
-        - CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1"
-        - WkFIX_EVAL="sed -i '' 's/WebBackForwardList* history = [m_webView backForwardList];/WebBackForwardList* history = (WebBackForwardList*)[m_webView backForwardList];/g' src/osx/webview_webkit.mm"
-        - WXBUILD_EVAL="python build-wxpython.py --build_dir=../bld --osx_cocoa --install"
-before_install:
-  # Install wx.
-  - eval "${MATRIX_EVAL}"
-  - pip install virtualenv pytest
-  - virtualenv ./env
-  - . ./env/bin/activate
-  - wget https://superb-sea2.dl.sourceforge.net/project/wxpython/wxPython/3.0.2.0/wxPython-src-3.0.2.0.tar.bz2
-  - tar -xf wxPython-src-3.0.2.0.tar.bz2
-  - cd ./wxPython-src-3.0.2.0
-  - eval "${WkFIX_EVAL}"
-  - cd ./wxPython
-  - eval "${WXBUILD_EVAL}"
-  - cd ../..
+        - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
 install:
   - python setup.py build
+  - python setup.py install
 script:
   - py.test
