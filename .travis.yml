@@ -19,32 +19,32 @@ matrix:
       osx_image: xcode9.3
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | sudo python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode9.2
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | sudo python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode9.1
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | sudo python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode9
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | sudo python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode8.3
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | sudo python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
     - os: osx
       osx_image: xcode8
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX_EVAL="yes | sudo python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
 before_install:
   - eval "${MATRIX_EVAL}"
   - pip install -U pip
