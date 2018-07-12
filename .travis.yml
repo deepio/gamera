@@ -5,10 +5,10 @@ matrix:
     # Linux Installation.
     - os: linux
       env:
-        - MATRIX_EVAL="sudo apt-get install python-wxgtk3.0 python-pip && pip install wxpython==2.8.11.0"
+        - MATRIX_EVAL="sudo apt-get install python-wxgtk2.8 python-pip && pip install wxpython==2.8.11.0"
     - os: linux
       env:
-        - MATRIX_EVAL="sudo apt-get install python-wxgtk3.0 python-pip && pip install wxpython==2.8.11.0"
+        - MATRIX_EVAL="sudo apt-get install python-wxgtk2.8 python-pip && pip install wxpython==2.8.11.0"
     # Mac Installation.
     - os: osx
       osx_image: xcode9.4
