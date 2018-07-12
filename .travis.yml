@@ -40,6 +40,7 @@ matrix:
         - MATRIX_EVAL="HOMEBREW_NO_AUTO_UPDATE=1 brew install python@2 wxpython"
 before_install:
   - eval "${MATRIX_EVAL}"
+  - pip install pytest
 install:
   - python setup.py build
   - python setup.py install
