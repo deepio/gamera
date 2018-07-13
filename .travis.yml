@@ -12,7 +12,7 @@ matrix:
       osx_image: xcode9.4
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX="brew install python@2 wxpython && pip install -U pip"
+        - MATRIX="brew install python@2 wxpython && pip install -U pip && export PATH=$PATH:/Users/travis/Library/Python/2.7/bin"
         - TESTS="py.test"
     - os: osx
       osx_image: xcode9.3
