@@ -12,17 +12,16 @@ matrix:
       osx_image: xcode9.4
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX="brew install python@2 wxpython"
+        - MATRIX="brew install python@2 wxpython && pip install -U pip"
         - TESTS="py.test"
     - os: osx
       osx_image: xcode9.3
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX="brew install wxpython"
+        - MATRIX="brew install wxpython && sudo pip install -U pip"
         - TESTS="py.test"
 install:
   - eval ${MATRIX}
-  - pip install -U pip
   - pip install pytest docutils pygments
   - python setup.py build
   - python setup.py install
