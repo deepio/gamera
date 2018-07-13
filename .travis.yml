@@ -58,6 +58,6 @@ matrix:
         - TESTS="py.test"
 install:
   - sudo chmod +x ./misc/install.sh
-  - $MATRIX_EVAL ./misc/install.sh
+  - $MATRIX_EVAL=${MATRIX_EVAL} ./misc/install.sh
 script:
   - eval ${TESTS}
