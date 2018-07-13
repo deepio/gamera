@@ -1,7 +1,5 @@
 language: generic
 sudo: required
-services:
-  - docker
 matrix:
   include:
     # Linux Installation.
@@ -15,6 +13,12 @@ matrix:
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
         - MATRIX="brew install python@2 wxpython"
+        - TESTS="py.test"
+    - os: osx
+      osx_image: xcode9.3
+      env:
+        - HOMEBREW_NO_AUTO_UPDATE=1
+        - MATRIX="brew install wxpython"
         - TESTS="py.test"
 install:
   - eval ${MATRIX}
