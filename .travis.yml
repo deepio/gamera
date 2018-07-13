@@ -5,59 +5,22 @@ services:
 matrix:
   include:
     # Linux Installation.
-    - os: linux
-      env:
-        - MATRIX_EVAL="docker build --build-arg DISTRO=14.04 MATRIX_EVAL='echo Ok!' -t trusty_tahr ./misc"
-        - TESTS="docker run -it misc_trusty_tahr_1 bash -c 'cd /code/gamera && py.test'"
-    - os: linux
-      env:
-        - MATRIX_EVAL="docker build --build-arg DISTRO=12.04 MATRIX_EVAL='echo Ok!' -t precise_pangolin ./misc"
-        - TESTS="docker run -it misc_precise_pangolin_1 bash -c 'cd /code/gamera && py.test'"
+    # - os: linux
+    #   env:
+    #     - MATRIX="docker build --build-arg DISTRO=14.04 MATRIX='echo Ok!' -t trusty_tahr ./misc"
+    #     - TESTS="docker run -it misc_trusty_tahr_1 bash -c 'cd /code/gamera && py.test'"
     # Mac Installation.
     - os: osx
       osx_image: xcode9.4
       env:
         - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="brew install python@2 wxpython"
-        - TESTS="py.test"
-    - os: osx
-      osx_image: xcode9.3
-      env:
-        - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
-        - TESTS="py.test"
-    - os: osx
-      osx_image: xcode9.2
-      env:
-        - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
-        - TESTS="py.test"
-    - os: osx
-      osx_image: xcode9.1
-      env:
-        - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
-        - TESTS="py.test"
-    - os: osx
-      osx_image: xcode9
-      env:
-        - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
-        - TESTS="py.test"
-    - os: osx
-      osx_image: xcode8.3
-      env:
-        - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
-        - TESTS="py.test"
-    - os: osx
-      osx_image: xcode8
-      env:
-        - HOMEBREW_NO_AUTO_UPDATE=1
-        - MATRIX_EVAL="yes | python -m pip uninstall pip && brew install python@2 wxpython && brew postinstall python"
+        - MATRIX="brew install python@2 wxpython"
         - TESTS="py.test"
 install:
-  - sudo chmod +x ./misc/install.sh
-  - $MATRIX_EVAL=${MATRIX_EVAL} ./misc/install.sh
+  - eval ${MATRIX}
+  - pip install -U pip
+  - pip install pytest docutils pygments
+  - python setup.py build
+  - python setup.py install
 script:
   - eval ${TESTS}
