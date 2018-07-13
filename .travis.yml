@@ -22,7 +22,7 @@ matrix:
         - TESTS="py.test"
 install:
   - eval ${MATRIX}
-  - pip install pytest docutils pygments
+  - pip install --user pytest docutils pygments
   - python setup.py build
   - python setup.py install
 script:
